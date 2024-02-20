@@ -38,6 +38,7 @@ def start_timer():
     
 
 def countdown(count):
+    global reps
     
     minutes_remaining = int(count / 60)
     seconds_remaining = int(count % 60)
@@ -53,7 +54,13 @@ def countdown(count):
         window.after(1, countdown, count - 1)
     else:
         start_timer()
-    
+        
+        marks = ""
+        work_sessions = int(reps/2)
+        print(f"work sessions: {work_sessions}")
+        for _ in range(work_sessions):
+            marks += "✔️"
+        checkMark_label.config(text=marks)
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -79,7 +86,7 @@ reset_button = Button(text="reset")
 start_button.grid(row=2, column=0)
 reset_button.grid(row=2, column=2)
 
-checkMark_label = Label(text="✔️", font=(35), fg=GREEN, bg=YELLOW)
+checkMark_label = Label(font=(35), fg=GREEN, bg=YELLOW)
 checkMark_label.grid(row=2, column=1)
 
 
