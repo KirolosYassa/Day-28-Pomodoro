@@ -26,11 +26,15 @@ def start_timer():
     reps += 1
     
     if reps in [1, 3, 5, 7]:
+        timer_label.config(text="Work", foreground=GREEN)
         countdown(count=Work_in_SECONDS)
     elif reps in [2, 4, 6]:
+        timer_label.config(text="Break", foreground=PINK)
         countdown(count=Short_Break_in_SECONDS)
-    elif reps in [8]:
+    elif reps == 8:
+        timer_label.config(text="Break", foreground=RED)
         countdown(count=Long_Break_in_SECONDS)
+    
     
 
 def countdown(count):
@@ -46,7 +50,8 @@ def countdown(count):
     canvas.itemconfig(timer_count, text = f"{minutes_remaining}:{seconds_remaining}")
     
     if count > 0:
-        window.after(2, countdown, count - 1)
+        window.after(1, countdown, count - 1)
+    else:
         start_timer()
     
 
